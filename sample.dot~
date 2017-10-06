@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 digraph g{
       graph [
       layout = dot
@@ -19,8 +12,9 @@ digraph g{
       e4 [label = "DVD", shape = box];
       e5 [label = "CD", shape = box];
       e6 [label = "書籍", shape = box];
+      e7 [label = "レンタル", shape = box];
 
-      r1 [label = "レンタル", shape = diamond];
+      r1 [label = "貸出明細", shape = diamond];
       r2 [label = "在庫", shape = diamond];
 
       isa [label = ISA, shape = triangle];
@@ -52,12 +46,12 @@ digraph g{
       pe64 [label = "ページ数"];
       pe65 [label = "ISBN"];
 
-      pr10 [label = "\nレンタルID\n￣￣￣￣￣￣", fixedsize = true, width = 1.8, height = 0.6];
-      pr11 [label = "日付"];
-      pr12 [label = "返却日"];
-      pr13 [label = "日数"];
-      pr14 [label = "料金"];
-      pr15 [label = "延滞金"];
+      pe70 [label = "\nレンタルID\n￣￣￣￣￣￣", fixedsize = true, width = 1.8, height = 0.6];
+      pe71 [label = "日付"];
+      pe72 [label = "返却日"];
+      pe73 [label = "日数"];
+      pe74 [label = "料金"];
+      pe75 [label = "延滞金"];
 
       pr21 [label = "レンタル状態"];
 
@@ -69,7 +63,7 @@ digraph g{
       
       pe21 -> e2 [arrowhead = none];
 
-      e3 -> pe31 [arrowhead = none];
+      pe31 -> e3 [arrowhead = none];
 
       e4 -> pe41 [arrowhead = none];
       e4 -> pe42 [arrowhead = none];
@@ -88,28 +82,31 @@ digraph g{
       e6 -> pe64 [arrowhead = none];
       e6 -> pe65 [arrowhead = none];
 
-      r1 -> pr10 [arrowhead = none];
-      r1 -> pr11 [arrowhead = none];
-      r1 -> pr12 [arrowhead = none];
-      r1 -> pr13 [arrowhead = none];
-      r1 -> pr14 [arrowhead = none];
-      r1 -> pr15 [arrowhead = none];
+      pe70 -> e7 [arrowhead = none];
+      pe71 -> e7 [arrowhead = none];
+      pe72 -> e7 [arrowhead = none];
+      pe73 -> e7 [arrowhead = none];
+      pe74 -> e7 [arrowhead = none];
+      pe75 -> e7 [arrowhead = none];
 
-      r2 -> pr21 [arrowhead = none];
+      pr21 -> r2 [arrowhead = none];
 
-      e1 -> r1 [arrowhead = none];
       r1 -> e2 [arrowhead = none];
+      r1 -> e1 [arrowhead = none];
+      e7 -> r1;
       e2 -> r2 [arrowhead = none];
 	    
 
       subgraph clus1 {
-	    r2 -> e3;
+	    e3 -> r2;
             e3  -> isa [arrowhead = none];
       	    isa -> e4 [arrowhead = none];
       	    isa -> e5 [arrowhead = none];
       	    isa -> e6 [arrowhead = none];
       };
       
-      {rank = e1; e2; r1;} 
-      {rank = pe41; e5; pe61;}
+      {rank = same; e3; r2; pr21}
+      {rank = same; e7; e1; r1;} 
+      {rank = same; pe41; e5; pe61;}
+      {rank = same; pe21; e2;}
 }
