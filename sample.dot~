@@ -1,0 +1,115 @@
+
+
+
+
+
+
+
+digraph g{
+      graph [
+      layout = dot
+      ];
+      node [
+      fontsize = 15
+      ];
+
+      e1 [label = "アカウント", shape = box];
+      e2 [label = "商品", shape = box];
+      e3 [label = "作品", shape = box];
+      e4 [label = "DVD", shape = box];
+      e5 [label = "CD", shape = box];
+      e6 [label = "書籍", shape = box];
+
+      r1 [label = "レンタル", shape = diamond];
+      r2 [label = "在庫", shape = diamond];
+
+      isa [label = ISA, shape = triangle];
+
+      pe11 [label = "\nアカウントID\n￣￣￣￣￣￣", fixedsize = true, width = 1.8, height = 0.6];
+      pe12 [label = "名前"];
+      pe13 [label = "生年月日"];
+      pe14 [label = "住所"];
+      pe15 [label = "電話番号"];
+      
+      pe21 [label = "\n商品ID\n￣￣￣￣", fixedsize = true, width = 1.6, height = 0.6];
+
+      pe31 [label = "\n作品ID\n￣￣￣￣", fixedsize = true, width = 1.6, height = 0.6];
+
+      pe41 [label = "タイトル"];
+      pe42 [label = "監督"];
+      pe43 [label = "制作会社"];
+      pe44 [label = "再生時間"];
+      pe45 [label = "主演"];     
+
+      pe51 [label = "タイトル"];
+      pe52 [label = "アーティスト"];
+      pe53 [label = "制作会社"];
+      pe54 [label = "再生時間"];
+
+      pe61 [label = "タイトル"];
+      pe62 [label = "作者"];
+      pe63 [label = "出版社"];
+      pe64 [label = "ページ数"];
+      pe65 [label = "ISBN"];
+
+      pr10 [label = "\nレンタルID\n￣￣￣￣￣￣", fixedsize = true, width = 1.8, height = 0.6];
+      pr11 [label = "日付"];
+      pr12 [label = "返却日"];
+      pr13 [label = "日数"];
+      pr14 [label = "料金"];
+      pr15 [label = "延滞金"];
+
+      pr21 [label = "レンタル状態"];
+
+      pe11 -> e1 [arrowhead = none];
+      pe12 -> e1 [arrowhead = none];
+      pe13 -> e1 [arrowhead = none];
+      pe14 -> e1 [arrowhead = none];
+      pe15 -> e1 [arrowhead = none];
+      
+      pe21 -> e2 [arrowhead = none];
+
+      e3 -> pe31 [arrowhead = none];
+
+      e4 -> pe41 [arrowhead = none];
+      e4 -> pe42 [arrowhead = none];
+      e4 -> pe43 [arrowhead = none];
+      e4 -> pe44 [arrowhead = none];
+      e4 -> pe45 [arrowhead = none];
+
+      e5 -> pe51 [arrowhead = none];
+      e5 -> pe52 [arrowhead = none];
+      e5 -> pe53 [arrowhead = none];
+      e5 -> pe54 [arrowhead = none];
+
+      e6 -> pe61 [arrowhead = none];
+      e6 -> pe62 [arrowhead = none];
+      e6 -> pe63 [arrowhead = none];
+      e6 -> pe64 [arrowhead = none];
+      e6 -> pe65 [arrowhead = none];
+
+      r1 -> pr10 [arrowhead = none];
+      r1 -> pr11 [arrowhead = none];
+      r1 -> pr12 [arrowhead = none];
+      r1 -> pr13 [arrowhead = none];
+      r1 -> pr14 [arrowhead = none];
+      r1 -> pr15 [arrowhead = none];
+
+      r2 -> pr21 [arrowhead = none];
+
+      e1 -> r1 [arrowhead = none];
+      r1 -> e2 [arrowhead = none];
+      e2 -> r2 [arrowhead = none];
+	    
+
+      subgraph clus1 {
+	    r2 -> e3;
+            e3  -> isa [arrowhead = none];
+      	    isa -> e4 [arrowhead = none];
+      	    isa -> e5 [arrowhead = none];
+      	    isa -> e6 [arrowhead = none];
+      };
+      
+      {rank = e1; e2; r1;} 
+      {rank = pe41; e5; pe61;}
+}
